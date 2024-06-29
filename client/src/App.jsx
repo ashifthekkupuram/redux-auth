@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 
-import { Home, Login, Register } from './pages'
+import { Home, Login, Register, NotFound404 } from './pages'
 import Layout from './components/Layout/Layout'
 
 const router = createBrowserRouter([
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
+      },
+      {
+        path: '/*',
+        element: <NotFound404 />
       }
     ]
   }
