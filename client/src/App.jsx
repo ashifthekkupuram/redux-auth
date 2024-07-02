@@ -3,6 +3,7 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 
 import { Home, Login, Register, NotFound404 } from './pages'
 import Layout from './components/Layout/Layout'
+import RequireAuth from './components/RequireAuth'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <RequireAuth />,
+        children: [{
+          path: '',
+          element: <Home />
+        }]
       },
       {
         path: '/login',
@@ -22,9 +27,9 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: '/*',
+        path: '*',
         element: <NotFound404 />
-      }
+      },
     ]
   }
 ])
