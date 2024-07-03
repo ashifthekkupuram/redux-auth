@@ -29,7 +29,7 @@ const Login = () => {
     setLoading(true)
     try {
       const Data = await login({...form}).unwrap()
-      dispatch(setCredentials({token: Data.accessToken, user: form.email}))
+      dispatch(setCredentials({user: Data.user, accessToken: Data.accessToken}))
       setForm({email: '',password: ''})
       setError(null)
       navigate('/')

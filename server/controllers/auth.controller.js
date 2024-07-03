@@ -58,7 +58,7 @@ export const login = async (req, res, next) => {
             secure: true,
             sameSite: 'None',
             maxAge: 1 * 24 * 60 * 60 * 1000
-        }).json({success: true, accessToken})
+        }).json({success: true, accessToken, user: { username: foundUser.username, createdAt: foundUser.createdAt }})
 
     } catch (err) {
         return res.status(400).json({
@@ -197,7 +197,8 @@ export const refresh = async (req, res, next) => {
 
                 return res.json({
                     success: true,
-                    accessToken
+                    accessToken,
+                    user: { username: foundUser.username, createdAt: foundUser.createdAt }
                 })
 
             }
