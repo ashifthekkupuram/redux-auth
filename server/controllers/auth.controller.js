@@ -49,7 +49,7 @@ export const login = async (req, res, next) => {
                 username: foundUser.username,
                 email: foundUser.email.toLowerCase()
             }
-        }, ACCESS_SECRET_KEY, { expiresIn: '15s' })
+        }, ACCESS_SECRET_KEY, { expiresIn: '5m' })
 
         const refreshToken = jwt.sign({ _id: foundUser._id }, REFRESH_SECRET_KEY, { expiresIn: '1d' })
 

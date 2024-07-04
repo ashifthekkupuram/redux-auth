@@ -4,7 +4,7 @@ import './NotFound404.css'
 
 const NotFound404 = () => {
   return (
-    <div>
+    <div className='container'>
       NotFound404
     </div>
   )

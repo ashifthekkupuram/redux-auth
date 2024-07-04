@@ -29,6 +29,7 @@ const Nav = () => {
       { token ? 
       <>
         <Link to="/" >Home</Link>
+        <Link to="/about" >About</Link>
         <button onClick={onClick} >Logout</button>
       </> : 
       <>
