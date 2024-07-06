@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import dotenv from 'dotenv'
 
 import User from '../models/user.model.js'
-import { json } from 'express'
+import { transporter } from '../utils/sendEmail.js'
 
 dotenv.config()
 
@@ -52,6 +52,21 @@ export const login = async (req, res, next) => {
         }, ACCESS_SECRET_KEY, { expiresIn: '5m' })
 
         const refreshToken = jwt.sign({ _id: foundUser._id }, REFRESH_SECRET_KEY, { expiresIn: '1d' })
+
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: foundUser.email,
+            subject: 'Sending Email using Node.js',
+            text: 'Logged in'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if(error){
+                console.log(error)
+            }else{
+                console.log('Done...')
+            }
+        })
 
         return res.cookie('jwt', refreshToken, {
             httpOnly: true,
